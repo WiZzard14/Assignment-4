@@ -101,4 +101,30 @@ document.getElementById("tabRejected").addEventListener("click", function () {
   setActiveTab("rejected");
 });
 
+document.getElementById("jobsContainer").addEventListener("click", function (e) {
+  const article = e.target.closest("article[data-id]");
+  if (!article) return;
+
+  const id = article.getAttribute("data-id");
+  const btn = e.target.closest("button[data-action]");
+  if (!btn) return;
+
+  const action = btn.getAttribute("data-action");
+  const job = jobs.find((j) => j.id === id);
+  if (!job) return;
+
+  if (action === "interview") {
+    job.status = job.status === "Interview" ? null : "Interview";
+  }
+  if (action === "rejected") {
+    job.status = job.status === "Rejected" ? null : "Rejected";
+  }
+
+  if (action === "delete") {
+    jobs = jobs.filter((j) => j.id !== id);
+  }
+
+  render();
+});
+
 setActiveTab("all");

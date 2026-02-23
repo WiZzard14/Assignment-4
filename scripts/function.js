@@ -111,7 +111,14 @@ function render() {
 
   const list = getFilteredJobs();
 
-  setText("jobsCount", list.length);
+  const total = jobs.length;
+  const shown = list.length;
+
+  if (activeTab === "all") {
+    setText("jobsCount", total);
+  } else {
+    setText("jobsCount", `${shown} of ${total}`);
+  }
 
   const emptyState = document.getElementById("emptyState");
   const jobsContainer = document.getElementById("jobsContainer");
