@@ -68,8 +68,8 @@ function renderCards(list) {
       >
         <div class="flex items-start justify-between gap-4">
           <div>
-            <h3 class="text-base font-bold">${escapeHtml(job.companyName)}</h3>
-            <p class="text-sm opacity-70 mt-0.5">${escapeHtml(job.position)}</p>
+            <h3 class="text-base font-bold">${job.companyName}</h3>
+            <p class="text-sm opacity-70 mt-0.5">${job.position}</p>
           </div>
 
           <button class="btn btn-ghost btn-sm btn-circle" data-action="delete" title="Delete">
@@ -78,13 +78,13 @@ function renderCards(list) {
         </div>
 
         <div class="text-sm opacity-70 mt-3 flex flex-wrap gap-2">
-          ${escapeHtml(job.location)} • ${escapeHtml(job.type)} • ${escapeHtml(job.salary)}
+          ${job.location} • ${job.type} • ${job.salary}
         </div>
 
         ${badgeBlock}
 
         <p class="text-sm opacity-80 mt-4 leading-relaxed">
-          ${escapeHtml(job.description)}
+          ${job.description}
         </p>
 
         <div class="mt-5 flex gap-3 flex-wrap">
@@ -157,13 +157,4 @@ function setActiveTab(tab) {
   style(tabRejected, tab === "rejected");
 
   render();
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
 }
